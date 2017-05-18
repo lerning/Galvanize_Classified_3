@@ -1,0 +1,90 @@
+
+
+   <h2 class="centro"> Bestest App</h2>
+
+
+<!-- filter -->
+<div class="container">
+   <div class="row">
+
+      <!-- add new -->
+      <a ng-click="$ctrl.toggleCreate()" class="four columns"><button>new</button></a>
+
+      <!-- filter -->
+
+      <div class="nav nav-pills four columns" >
+          <input type="search" class="form-control input-sm search-form" placeholder="Filter" ng-model="filterText" >
+     </div>
+
+     <!--  sort -->
+     <div class="four columns">
+          <select class="form-control" id="sort" ng-model="oSelect" >
+            <option value="" disabled selected>Please Select</option>
+            <option value="-price">price (highest first)</option>
+            <option value="price">price (lowest first)</option>
+            <option value="title">title</option>
+          </select>
+     </div>
+
+   </div>
+</div>
+<!-- create form -->
+<div class="container">
+
+   <div class="row addForm" ng-show="$ctrl.showPost">
+       <form novalidate name="$ctrl.createPostForm" ng-submit="$ctrl.createPost()">
+         <div class="twelve columns">
+            <label for="title">title</label> <input name="title" class="four columns offset-by-four" ng-model="$ctrl.post.title">
+         </div></br>
+         <div class="twelve columns">
+            <label for="body">description</label><textarea name="body" class="six columns offset-by-three" ng-model="$ctrl.post.description"></textarea>
+         </div></br>
+         <div class="twelve columns">
+            <label for="price">price</label><input name="author" class="two columns offset-by-five" ng-model="$ctrl.post.price">
+         </div></br>
+         <div class="twelve columns">
+            <label for="image-url">Image URL</label><textarea name="url" class="six columns offset-by-three" ng-model="$ctrl.post.item_image"></textarea>
+         </div>
+         </br>
+           <button type="submit" class="four columns offset-by-four">Create Post</button>
+       </form>
+   </div>
+</div>
+
+   <!-- Posts -->
+
+<div ng-repeat="post in $ctrl.posts | filter:filterText| orderBy:oSelect">
+   <div class="container post">
+      <div class="container">
+
+         <button ng-click="$ctrl.updatePost(post.id)" class="delup" >update</button>
+         <button ng-click="$ctrl.deletePost(post.id)" class="delup" >delete</button>
+         <img src={{post.item_image}}></img>
+            <div class="six columns centro right">title: {{ post.title }}</div>
+            <div class="six columns centro right">price: {{ post.price }}</div>
+            <div class="six columns centro right">description: {{ post.description }}</div>
+         <form novalidate name="$ctrl.editPostForm" ng-submit="$ctrl.editPost($ctrl.post, post.id)" ng-if="$ctrl.updateId == post.id" ng-show="$ctrl.showEdit">
+           <div class="four columns offset-by-two" >
+             <label for="title">title</label>
+             <input name="title" ng-model="$ctrl.post.title">
+           </div>
+           <div class="four columns offset-by-two">
+             <label for="description">description</label>
+             <textarea name="description"  ng-model="$ctrl.post.description"></textarea>
+           </div>
+           <div class="four columns offset-by-two" >
+             <label for="price">price</label><input name="price" ng-model="$ctrl.post.price">
+           </div>
+           <div class="four columns offset-by-two">
+             <label for="image-url">Image URL</label><input name="item_image"ng-model="$ctrl.post.item_image">
+           </div>
+           <div class="four columns offset-by-four">
+           </br>
+             <button type="submit" class="btn btn-primary">
+              Update Post
+             </button>
+           </div>
+         </form>
+   </div>
+   </div>
+</div>
