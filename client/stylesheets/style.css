@@ -1,3 +1,4 @@
+/* Mobile first queries */
 .centro {
    text-align: center;
 }
@@ -29,6 +30,42 @@ label {
 img {
    margin-top: 1em;
    margin-bottom: 1em;
-   width: 40%;
+   width: 100%;
    float: left;
 }
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+}
+
+/* Larger than phablet */
+@media (min-width: 660px, max-width: 750px) {
+   img {
+      width: 60%;
+      float: none;
+      margin: 0;
+      margin-left: 5em;
+   }
+   .right {
+      float:none;
+      position: relative;
+      margin-left: 7em;
+   }
+   .delup {
+      margin-left: 5em;
+      float: none;
+   }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+   img {
+      width: 40%;
+   }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
